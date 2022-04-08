@@ -17,6 +17,9 @@
 		F8D490B728007C8200DEF9C6 /* TMDB-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8D490B628007C8200DEF9C6 /* TMDB-Info.plist */; };
 		F8D490BC2800862300DEF9C6 /* MovieError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D490BB2800862300DEF9C6 /* MovieError.swift */; };
 		F8D490BF280086C100DEF9C6 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D490BE280086C100DEF9C6 /* RequestType.swift */; };
+		F8D490C128008E4E00DEF9C6 /* UIView+pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D490C028008E4E00DEF9C6 /* UIView+pin.swift */; };
+		F8D490C328008E8300DEF9C6 /* UIViewController+errorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D490C228008E8300DEF9C6 /* UIViewController+errorAlert.swift */; };
+		F8D490C5280091A900DEF9C6 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D490C4280091A900DEF9C6 /* MovieCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +36,9 @@
 		F8D490B828007CD500DEF9C6 /* TMDB-Info-Sample.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TMDB-Info-Sample.plist"; sourceTree = "<group>"; };
 		F8D490BB2800862300DEF9C6 /* MovieError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieError.swift; sourceTree = "<group>"; };
 		F8D490BE280086C100DEF9C6 /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
+		F8D490C028008E4E00DEF9C6 /* UIView+pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+pin.swift"; sourceTree = "<group>"; };
+		F8D490C228008E8300DEF9C6 /* UIViewController+errorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+errorAlert.swift"; sourceTree = "<group>"; };
+		F8D490C4280091A900DEF9C6 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,7 @@
 		F8D490B0280079EE00DEF9C6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F8D490C4280091A900DEF9C6 /* MovieCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -117,6 +124,8 @@
 			children = (
 				F8D490BB2800862300DEF9C6 /* MovieError.swift */,
 				F8D490BE280086C100DEF9C6 /* RequestType.swift */,
+				F8D490C028008E4E00DEF9C6 /* UIView+pin.swift */,
+				F8D490C228008E8300DEF9C6 /* UIViewController+errorAlert.swift */,
 			);
 			path = "Helpers & Extensions";
 			sourceTree = "<group>";
@@ -217,9 +226,12 @@
 				F8D4909F2800790100DEF9C6 /* MovieListViewController.swift in Sources */,
 				F8D490BC2800862300DEF9C6 /* MovieError.swift in Sources */,
 				F8D490BF280086C100DEF9C6 /* RequestType.swift in Sources */,
+				F8D490C328008E8300DEF9C6 /* UIViewController+errorAlert.swift in Sources */,
 				F8D490B528007C5C00DEF9C6 /* MovieController.swift in Sources */,
 				F8D4909B2800790100DEF9C6 /* AppDelegate.swift in Sources */,
 				F8D490B328007BB800DEF9C6 /* Movie.swift in Sources */,
+				F8D490C128008E4E00DEF9C6 /* UIView+pin.swift in Sources */,
+				F8D490C5280091A900DEF9C6 /* MovieCell.swift in Sources */,
 				F8D4909D2800790100DEF9C6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,7 +370,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 37H8X6K6NN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MovieSearch/Resources/Info.plist;
@@ -371,7 +383,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.5;
+				MARKETING_VERSION = 0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AvantiApplications.MovieSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -386,7 +398,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 37H8X6K6NN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MovieSearch/Resources/Info.plist;
@@ -399,7 +411,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.5;
+				MARKETING_VERSION = 0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AvantiApplications.MovieSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

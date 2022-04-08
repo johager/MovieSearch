@@ -19,7 +19,7 @@ class MovieListViewController: UIViewController {
     
     // MARK: - Views
     
-    var searchBar: UISearchController!
+    var searchBar: UISearchBar!
     var tableView: UITableView!
 
     override func viewDidLoad() {
@@ -31,9 +31,26 @@ class MovieListViewController: UIViewController {
     // MARK: - View Methods
     
     func setUpViews() {
-        //tableView.dataSource = self
+        title = "Movie Search"
         
-        view.backgroundColor = .red
+        let safeArea = view.safeAreaLayoutGuide
+        
+        searchBar = UISearchBar()
+        view.addSubview(searchBar)
+        searchBar.pin(top: safeArea.topAnchor, trailing: safeArea.trailingAnchor, bottom: nil, leading: safeArea.leadingAnchor)
+        
+        tableView = UITableView()
+        view.addSubview(tableView)
+        tableView.pin(top: searchBar.bottomAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor)
+        
+        tableView.register(MovieCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.dataSource = self
+    }
+    
+    func updateViews(movies: [Movie]) {
+        title = "Movies"
+        self.movies = movies
+        tableView.reloadData()
     }
     
     // MARK: - Actions
@@ -43,10 +60,11 @@ class MovieListViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let movies):
-                    self.movies = movies
                     print(movies)
+                    self.updateViews(movies: movies)
                 case .failure(let error):
                     print(error)
+                    self.presentErrorAlert(for: error)
                 }
             }
         }
@@ -62,6 +80,9 @@ extension MovieListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MovieCell
+        else { return UITableViewCell() }
+        cell.configure(with: movies[indexPath.row])
+        return cell
     }
 }
