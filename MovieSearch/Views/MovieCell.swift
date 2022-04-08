@@ -65,7 +65,7 @@ class MovieCell: UITableViewCell {
         rStackView.axis = .vertical
         rStackView.distribution = .fill
         rStackView.alignment = .leading
-        rStackView.spacing = 8
+        rStackView.spacing = 6
         rStackView.translatesAutoresizingMaskIntoConstraints = false
         
         titleLabel = label(textStyle: .headline)
