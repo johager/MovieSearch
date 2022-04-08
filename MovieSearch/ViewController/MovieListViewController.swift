@@ -24,17 +24,33 @@ class MovieListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
-        print("\(#function) - apiKey: \(movieController.apiKey)")
+        setUpViews()
+        getMovies(withTitle: "Star Trek")
     }
 
     // MARK: - View Methods
     
     func setUpViews() {
-        tableView.dataSource = self
+        //tableView.dataSource = self
+        
+        view.backgroundColor = .red
     }
     
     // MARK: - Actions
+    
+    func getMovies(withTitle title: String) {
+        movieController.getMovies(withTitle: title) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let movies):
+                    self.movies = movies
+                    print(movies)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
 }
 
 // MARK: -
@@ -42,7 +58,7 @@ class MovieListViewController: UIViewController {
 extension MovieListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

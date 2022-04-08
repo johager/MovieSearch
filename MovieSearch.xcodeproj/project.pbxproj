@@ -15,6 +15,8 @@
 		F8D490B328007BB800DEF9C6 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D490B228007BB800DEF9C6 /* Movie.swift */; };
 		F8D490B528007C5C00DEF9C6 /* MovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D490B428007C5C00DEF9C6 /* MovieController.swift */; };
 		F8D490B728007C8200DEF9C6 /* TMDB-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8D490B628007C8200DEF9C6 /* TMDB-Info.plist */; };
+		F8D490BC2800862300DEF9C6 /* MovieError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D490BB2800862300DEF9C6 /* MovieError.swift */; };
+		F8D490BF280086C100DEF9C6 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D490BE280086C100DEF9C6 /* RequestType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		F8D490B428007C5C00DEF9C6 /* MovieController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieController.swift; sourceTree = "<group>"; };
 		F8D490B628007C8200DEF9C6 /* TMDB-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TMDB-Info.plist"; sourceTree = "<group>"; };
 		F8D490B828007CD500DEF9C6 /* TMDB-Info-Sample.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TMDB-Info-Sample.plist"; sourceTree = "<group>"; };
+		F8D490BB2800862300DEF9C6 /* MovieError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieError.swift; sourceTree = "<group>"; };
+		F8D490BE280086C100DEF9C6 /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,7 @@
 		F8D490992800790100DEF9C6 /* MovieSearch */ = {
 			isa = PBXGroup;
 			children = (
+				F8D490BD280086A100DEF9C6 /* Helpers & Extensions */,
 				F8D490B128007A0400DEF9C6 /* Model */,
 				F8D490B0280079EE00DEF9C6 /* Views */,
 				F8D490AF280079DD00DEF9C6 /* ViewController */,
@@ -105,6 +110,15 @@
 				F8D490B428007C5C00DEF9C6 /* MovieController.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		F8D490BD280086A100DEF9C6 /* Helpers & Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F8D490BB2800862300DEF9C6 /* MovieError.swift */,
+				F8D490BE280086C100DEF9C6 /* RequestType.swift */,
+			);
+			path = "Helpers & Extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +215,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8D4909F2800790100DEF9C6 /* MovieListViewController.swift in Sources */,
+				F8D490BC2800862300DEF9C6 /* MovieError.swift in Sources */,
+				F8D490BF280086C100DEF9C6 /* RequestType.swift in Sources */,
 				F8D490B528007C5C00DEF9C6 /* MovieController.swift in Sources */,
 				F8D4909B2800790100DEF9C6 /* AppDelegate.swift in Sources */,
 				F8D490B328007BB800DEF9C6 /* Movie.swift in Sources */,
@@ -342,7 +358,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 37H8X6K6NN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MovieSearch/Resources/Info.plist;
@@ -355,7 +371,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2;
+				MARKETING_VERSION = 0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AvantiApplications.MovieSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -370,7 +386,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 37H8X6K6NN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MovieSearch/Resources/Info.plist;
@@ -383,7 +399,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2;
+				MARKETING_VERSION = 0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AvantiApplications.MovieSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
