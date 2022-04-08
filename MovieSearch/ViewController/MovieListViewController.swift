@@ -22,10 +22,11 @@ class MovieListViewController: UIViewController {
     var searchBar: UISearchBar!
     var tableView: UITableView!
 
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
-        getMovies(withTitle: "Star Trek")
     }
 
     // MARK: - View Methods
@@ -39,6 +40,8 @@ class MovieListViewController: UIViewController {
         view.addSubview(searchBar)
         searchBar.pin(top: safeArea.topAnchor, trailing: safeArea.trailingAnchor, bottom: nil, leading: safeArea.leadingAnchor)
         
+        searchBar.delegate = self
+        
         tableView = UITableView()
         view.addSubview(tableView)
         tableView.pin(top: searchBar.bottomAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor)
@@ -48,7 +51,6 @@ class MovieListViewController: UIViewController {
     }
     
     func updateViews(movies: [Movie]) {
-        title = "Movies"
         self.movies = movies
         tableView.reloadData()
     }
@@ -60,10 +62,9 @@ class MovieListViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let movies):
-                    print(movies)
+                    //print(movies)
                     self.updateViews(movies: movies)
                 case .failure(let error):
-                    print(error)
                     self.presentErrorAlert(for: error)
                 }
             }
@@ -71,7 +72,19 @@ class MovieListViewController: UIViewController {
     }
 }
 
-// MARK: -
+// MARK: - UISearchBarDelegate
+
+extension MovieListViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text,
+              !text.isEmpty
+        else { return }
+        getMovies(withTitle: text)
+    }
+}
+
+// MARK: - UITableViewDataSource
 
 extension MovieListViewController: UITableViewDataSource {
     

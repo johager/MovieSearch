@@ -5,7 +5,7 @@
 //  Created by James Hager on 4/8/22.
 //
 
-import Foundation
+import UIKit
 
 class MovieController {
     
@@ -30,7 +30,7 @@ class MovieController {
                 fatalError("Install a proper API Key in the \(fileName).plist file.")
             }
             
-            print("apiKey: '\(apiKey)'")
+            //print("apiKey: '\(apiKey)'")
             return apiKey
         } catch {
             fatalError("Error reding the \(fileName).plist file: \(error), \(error.localizedDescription)")
@@ -54,7 +54,7 @@ class MovieController {
         
         guard let finalURL = components?.url else { return completion(.failure(.invalidURL(requestType)))}
         
-        print("\(requestType) finalURL: \(finalURL)")
+        //print("\(requestType) finalURL: \(finalURL)")
         
         URLSession.shared.dataTask(with: finalURL) { data, response, error in
             if let error = error {
@@ -75,6 +75,34 @@ class MovieController {
             } catch {
                 completion(.failure(.unableToDecodeMovieData(error)))
             }
+        }.resume()
+    }
+    
+    static func getPoster(for posterPath: String, completion: @escaping (Result<UIImage, MovieError>) -> Void) {
+        let requestType = RequestType.poster
+        
+        guard var url = requestType.url else { return completion(.failure(.invalidURL(requestType)))}
+        
+        url.appendPathComponent(posterPath)
+        
+        //print("\(requestType) url: \(url)")
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                return completion(.failure(.urlSessionError(requestType, error)))
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode != 200 {
+                    return completion(.failure(.httpResponseStatusCode(requestType, response.statusCode)))
+                }
+            }
+            
+            guard let data = data else { return completion(.failure(.noData(requestType)))}
+            
+            guard let posterImage = UIImage(data: data) else { return completion(.failure(.unableToDecodePosterImage)) }
+            
+            completion(.success(posterImage))
         }.resume()
     }
 }

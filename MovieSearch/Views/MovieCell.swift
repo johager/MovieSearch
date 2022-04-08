@@ -23,6 +23,10 @@ class MovieCell: UITableViewCell {
     func configure(with movie: Movie) {
         setUpViews()
         
+        if let posterPath = movie.posterPath {
+            getPosterImage(for: posterPath)
+        }
+        
         posterImageView.image = UIImage(systemName: "photo")?.withTintColor(.systemGray5, renderingMode: .alwaysOriginal)
         titleLabel.text = movie.title
         
@@ -33,6 +37,8 @@ class MovieCell: UITableViewCell {
     
     func setUpViews() {
         guard posterImageView == nil else { return }
+        
+        selectionStyle = .none
         
         let layoutMarginsGuide = contentView.layoutMarginsGuide
         
@@ -95,6 +101,15 @@ class MovieCell: UITableViewCell {
     }
     
     func getPosterImage(for posterPath: String) {
-        
+        MovieController.getPoster(for: posterPath) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let posterImage):
+                    self.posterImageView.image = posterImage
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
     }
 }
