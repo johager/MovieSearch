@@ -102,8 +102,12 @@ class MovieListViewController: UIViewController {
         case 0:
             movies.sort { $0.title < $1.title}
         case 1:
-            movies.sort {(lhs: Movie, rhs: Movie) -> Bool in
-                guard let lhs = lhs.releaseDateString, let rhs = rhs.releaseDateString else { return false }
+            movies.sort { (lhs: Movie, rhs: Movie) -> Bool in
+                guard let lhs = lhs.releaseDateString,
+                      !lhs.isEmpty,
+                      let rhs = rhs.releaseDateString,
+                      !rhs.isEmpty
+                else { return false }
                 return lhs < rhs
             }
         case 2:
@@ -115,6 +119,7 @@ class MovieListViewController: UIViewController {
             break
         }
         tableView.reloadData()
+        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
     
     // MARK: - Actions
