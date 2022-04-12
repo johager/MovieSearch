@@ -13,7 +13,7 @@ class MovieCell: UITableViewCell {
     
     var posterImageView: UIImageView!
     var titleLabel: UILabel!
-    var releaseDataLabel: UILabel!
+    var releaseDateLabel: UILabel!
     var ratingLabel: UILabel!
     var overviewLabel: UILabel!
     
@@ -28,10 +28,21 @@ class MovieCell: UITableViewCell {
         }
         
         posterImageView.image = UIImage(systemName: "photo")?.withTintColor(.systemGray5, renderingMode: .alwaysOriginal)
-        titleLabel.text = movie.title
         
-        releaseDataLabel.text = "Released \(dateString(from: movie.releaseDateString))"
-        ratingLabel.text = "Rating: \(String(format: "%.1f", movie.rating))"
+        var titleString = movie.title
+        if let originalTitle = movie.originalTitle, originalTitle != movie.title {
+            titleString += "\n(\(originalTitle))"
+        }
+        titleLabel.text = titleString
+        
+        releaseDateLabel.text = "Released: \(dateString(from: movie.releaseDateString))"
+        
+        if let rating = movie.rating {
+            ratingLabel.text = "Rating: \(String(format: "%.1f", rating))"
+        } else {
+            ratingLabel.text = "Rating: NA"
+        }
+        
         overviewLabel.text = movie.overview
     }
     
@@ -71,8 +82,8 @@ class MovieCell: UITableViewCell {
         titleLabel = label(textStyle: .headline)
         rStackView.addArrangedSubview(titleLabel)
         
-        releaseDataLabel = label(textStyle: .footnote)
-        rStackView.addArrangedSubview(releaseDataLabel)
+        releaseDateLabel = label(textStyle: .footnote)
+        rStackView.addArrangedSubview(releaseDateLabel)
         
         ratingLabel = label(textStyle: .footnote)
         rStackView.addArrangedSubview(ratingLabel)
@@ -90,11 +101,15 @@ class MovieCell: UITableViewCell {
         return label
     }
     
-    func dateString(from dateStringIn: String) -> String {
+    func dateString(from dateString: String?) -> String {
+        guard let dateString = dateString,
+              !dateString.isEmpty
+        else { return "NA" }
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        guard let date = dateFormatter.date(from: dateStringIn) else { return dateStringIn }
+        guard let date = dateFormatter.date(from: dateString) else { return dateString }
         
         dateFormatter.dateFormat = "MMM d, yyyy"
         return dateFormatter.string(from: date)

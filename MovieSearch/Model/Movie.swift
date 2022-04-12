@@ -17,11 +17,11 @@ struct MovieData: Decodable {
 
 struct Movie: Decodable {
     let title: String
-    let originalTitle: String
-    let releaseDateString: String
-    let rating: Float
-    let popularity: Float
-    let overview: String
+    let originalTitle: String?
+    let releaseDateString: String?
+    let rating: Float?
+    let popularity: Float?
+    let overview: String?
     let posterPath: String?
     
     enum CodingKeys: String, CodingKey {

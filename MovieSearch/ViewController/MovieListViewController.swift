@@ -102,9 +102,15 @@ class MovieListViewController: UIViewController {
         case 0:
             movies.sort { $0.title < $1.title}
         case 1:
-            movies.sort { $0.releaseDateString < $1.releaseDateString}
+            movies.sort {(lhs: Movie, rhs: Movie) -> Bool in
+                guard let lhs = lhs.releaseDateString, let rhs = rhs.releaseDateString else { return false }
+                return lhs < rhs
+            }
         case 2:
-            movies.sort { $0.rating > $1.rating}
+            movies.sort { (lhs: Movie, rhs: Movie) -> Bool in
+                guard let lhs = lhs.rating, let rhs = rhs.rating else { return false }
+                return lhs > rhs
+            }
         default:
             break
         }
